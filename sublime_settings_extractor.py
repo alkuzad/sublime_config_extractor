@@ -12,7 +12,7 @@ import logging
 
 import six
 
-from .lists import IGNORE_LIST, WANT_LIST # YYY repackage to setuptools and change to absolute import
+from lists import IGNORE_LIST, WANT_LIST # YYY repackage to setuptools and change to absolute import
 
 FORMAT = '[%(asctime)-15s %(levelname)s]: %(message)s'
 logging.basicConfig(format=FORMAT)
@@ -59,10 +59,10 @@ class UserFileFinder(object):
     def _parse_rules(self, rules_list, rule_type):
         for rule in rules_list:
             if rule.startswith('MD5:'):
-                LOGGER.debug('generated MD5 rule from: %s', rule)
+                LOGGER.debug('generated %s MD5 rule from: %s', rule_type, rule)
                 self.rules.append(Rule(rule, partial(self.md5_check, rule[4:]), rule_type))
             else:
-                LOGGER.debug('generated Regexp rule from: %s', rule)
+                LOGGER.debug('generated %s Regexp rule from: %s', rule_type, rule)
                 self.rules.append(Rule(rule, self.generate_regexp_check(rule).match, rule_type))
 
     def build_rules_list(self):
@@ -81,7 +81,6 @@ class UserFileFinder(object):
                     break
             if not matched:
                 LOGGER.warning('file does not match to any rule: %s', fil)
-        return files_to_copy
 
 def dir_exists_or_create(path):
     if not os.path.exists(path):
