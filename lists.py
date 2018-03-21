@@ -18,7 +18,8 @@ IGNORE_LIST = [
     r'MD5:643421d12b881dc433b4e187ba0b0e00',
     r'Sublimerge\.sublime-license', # For now - keep it ignored, maybe safe-copy should be used. Or leverage external apis,
     r'.*\.cache',
-    r'Color Highlighter'
+    r'Color Highlighter',
+    r'c2u_tmp'
 ]
 
 WANT_LIST = [
@@ -31,5 +32,6 @@ WANT_LIST = [
     r'close_minimap_on_multi_view\.py',
     r'.*\.sublime-keymap',
     r'print_snippet.py',
-    r'Sublimerge Macros.sublime-commands'
+    r'Sublimerge Macros.sublime-commands',
+    r'Snippets'
 ]
